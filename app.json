@@ -1,0 +1,19 @@
+{
+  "name": "dm-portal",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "SYMFONY_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
