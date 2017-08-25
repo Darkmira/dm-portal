@@ -6,8 +6,7 @@ php:
   - nightly
 
 env:
-  - SYMFONY_ENV=dev
-  - SYMFONY_ENV=prod
+  - SYMFONY_ENV=test
 
 matrix:
   allow_failures:

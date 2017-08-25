@@ -6,6 +6,9 @@
   "env": {
     "SYMFONY_ENV": {
       "required": true
+    },
+    "DATABASE_URL": {
+      "required": true
     }
   },
   "formation": {
