@@ -1,0 +1,36 @@
+version: "3.1"
+
+services:
+
+    web:
+        build: .
+        environment:
+            SYMFONY_ENV: dev
+        container_name: dm-portal-web
+        volumes:
+            - .:/var/www/html
+
+    database:
+        image: mariadb:10.3
+        container_name: dm-portal-database
+        environment:
+            - MYSQL_ROOT_PASSWORD=dm-portal
+            - MYSQL_DATABASE=dm-portal
+            - MYSQL_USER=dm-portal
+            - MYSQL_PASSWORD=dm-portal
+
+    composer:
+        restart: 'no'
+        image: composer
+        command: install
+        volumes:
+            - .:/app
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: dm-portal-phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            MYSQL_ROOT_PASSWORD: dm-portal
+            PMA_HOST: database

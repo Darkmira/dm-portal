@@ -20,7 +20,7 @@
         ]
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/orm": "^2.5",
@@ -41,7 +41,8 @@
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0",
-        "sllh/composer-versions-check": "^2.0"
+        "sllh/composer-versions-check": "^2.0",
+        "symfony/web-server-bundle": "^3.3"
     },
     "scripts": {
         "symfony-scripts": [
