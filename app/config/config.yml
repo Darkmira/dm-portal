@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-
+    suggestion_directory: '%kernel.project_dir%/uploads/suggestion'
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
@@ -74,3 +74,5 @@ ornicar_gravatar:
     rating: g
     size: 40
     default: mm
+
+

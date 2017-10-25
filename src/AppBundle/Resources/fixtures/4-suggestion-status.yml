@@ -1,0 +1,11 @@
+model: AppBundle\Entity\SuggestionStatus
+fixtures:
+    article_status_pending:
+        id: 1
+        label: suggestion.status.new
+    article_status_accepted:
+        id: 2
+        label: suggestion.status.accepted
+    article_status_refused:
+        id: 3
+        label: suggestion.status.refused

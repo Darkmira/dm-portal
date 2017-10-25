@@ -1,0 +1,51 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - Suggestions' %}
+
+{% block nav %}
+    <h2>{{ 'suggestion-categories.title'|trans }}</h2>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('home') }}">{{ 'home.title'|trans }}</a>
+        </li>
+        <li class="active">
+            <strong>{{ 'suggestion-categories.title'|trans }}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block action %}
+    <a href="{{ path('post_suggestions_categories') }}" class="btn btn-primary">{{ 'suggestion-categories.action.add'|trans }}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{ 'suggestion-categories.list.title'|trans }}</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="project-list">
+                        <table class="table table-hover">
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td class="col-xs-1"># {{ category.id }}</td>
+                                    <td class="project-title"><strong>{{ category.label }}</strong></td>
+                                    <td>{{ category.suggestions|length }} {{ 'suggestion-categories.list.msg.nb-suggestions'|transchoice(category.suggestions|length) }}</td>
+                                    <td class="text-right">
+                                        <a class="btn btn-danger btn-xs"
+                                           href="{{ path('delete_suggestions_category', {id: category.id}) }}"
+                                           {% if category.suggestions|length > 0 %}disabled{% endif %}>{{ 'suggestion-categories.list.action.remove'|trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+model: AppBundle\Entity\SuggestionCategory
+fixtures:
+    article_category_1:
+        label: Image
+    article_category_2:
+        label: Vidéo
+    article_category_3:
+        label: Lien
+    article_category_4:
+        label: Darkmira
+    article_category_5:
+        label: Drop Robot

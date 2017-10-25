@@ -1,17 +1,17 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
- * ArticleCategory
+ * SuggestionCategory
  *
- * @ORM\Table(name="article_category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleCategoryRepository")
+ * @ORM\Table(name="suggestion_category")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SuggestionCategoryRepository")
  * @UniqueEntity(fields={"label"})
  */
-class ArticleCategory
+class SuggestionCategory
 {
     /**
      * Constructor
@@ -45,9 +45,9 @@ class ArticleCategory
     private $insertedAt;
 
     /**
-    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Article", mappedBy="category")
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Suggestion", mappedBy="category")
     */
-    private $articles;
+    private $suggestions;
 
 
     /**
@@ -65,9 +65,9 @@ class ArticleCategory
      *
      * @param string $label
      *
-     * @return ArticleCategory
+     * @return SuggestionCategory
      */
-    public function setLabel($label): ArticleCategory
+    public function setLabel($label): SuggestionCategory
     {
         $this->label = $label;
 
@@ -89,9 +89,9 @@ class ArticleCategory
      *
      * @param \DateTime $insertedAt
      *
-     * @return ArticleCategory
+     * @return SuggestionCategory
      */
-    public function setInsertedAt($insertedAt): ArticleCategory
+    public function setInsertedAt($insertedAt): SuggestionCategory
     {
         $this->insertedAt = $insertedAt;
 
@@ -109,12 +109,12 @@ class ArticleCategory
     }
 
     /**
-     * Get articles
+     * Get suggestions
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getArticles()
+    public function getSuggestions()
     {
-        return $this->articles;
+        return $this->suggestions;
     }
 }

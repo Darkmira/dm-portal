@@ -8,6 +8,7 @@ security.signup.button.have-account: Déjà un compte ?
 navigation.home.title: Accueil
 navigation.articles.title: Articles
 navigation.articles-categories.title: 'Thèmes'
+navigation.suggestions-categories.title: Cat. de suggestion
 
 home.title: Accueil
 
@@ -44,6 +45,31 @@ article-categories.add.title: 'Ajouter un thème'
 article-categories.add.action.cancel: 'Annuler'
 article-categories.add.action.submit: 'Ajouter'
 
+navigation.suggestions.title: 'Suggestion de contenu'
+suggestions.add.title: Ajout d'une suggestion
+suggestions.title: Suggestion
+suggestion.number.title: 'Suggestion n°'
+
+suggestions.add.action.cancel: Annuler
+suggestions.list.title: Liste des suggestions
+suggestions.action.add: Ajouter une suggestion
+suggestions.add.action.submit: Ajouter
+suggestion.list.action.view: 'Détails'
+suggestion.action.return: 'Retour à la liste'
+suggestion.button.refuse: Refuser
+suggestion.button.accept: Accepter
+suggestion.status.new: Nouveau
+suggestion.status.accepted: Accepté
+suggestion.status.refused: Refusé
+suggestion-categories.list.title: Catégories
+
+suggestion-categories.list.msg.nb-suggestions: article|]1,+Inf[articles
+suggestion-categories.action.add: Ajouter une catégorie
+suggestion-categories.list.action.remove: Supprimer
+suggestion-categories.add.action.cancel: Retour
+suggestion-categories.title: Catégories
+
+
 # Emails
 email.new-article.title: Nouvelle demande d'article
 email.new-article.main-title: Nouvelle demande d'article de
@@ -68,6 +94,8 @@ entity.article.description.placeholder: Synopsys
 entity.article.link.placeholder: Lien Google Docs
 
 entity.article-category.label.placeholder: Label
+
+entity.suggestion.description.placeholder: Description
 
 # Layout
 layout.action.signout: Déconnexion

@@ -1,0 +1,70 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - Suggestions' %}
+
+{% block nav %}
+    <h2>{{ 'suggestions.title'|trans }}</h2>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('home') }}">{{ 'home.title'|trans }}</a>
+        </li>
+        <li class="active">
+            <strong>{{ 'suggestions.title'|trans }}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block action %}
+    <a href="{{ path('post_suggestions') }}" class="btn btn-primary">{{ 'suggestions.action.add'|trans }}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{ 'suggestions.list.title'|trans }}</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="project-list">
+                        <table class="table table-hover">
+                            <tbody>
+                            {% for suggestion in suggestions %}
+                                <tr>
+                                    <td class="col-xs-1">
+                                        {% if suggestion.status.id == 1 %}
+                                            <span class="label label-warning">{{ suggestion.status.label|trans }}</span>
+                                        {% elseif suggestion.status.id == 2 %}
+                                            <span class="label label-info">{{ suggestion.status.label|trans }}</span>
+                                        {% else %}
+                                            <span class="label label-default">{{ suggestion.status.label|trans }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="col-xs-4">
+                                        {{ suggestion.description|slice(0, 50) }}
+                                        {% if suggestion.description|length >50 %}
+                                            {{ '...' }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right col-xs-1">
+                                        {% if suggestion.file is not empty %}
+                                            <a class="btn btn-default btn-sm"
+                                               href="{{ path('get_suggestions_download',{'file':suggestion.file}) }}">
+                                                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right col-xs-1">
+                                        <a class="btn btn-default btn-sm"
+                                           href="{{ path('get_suggestion', {'id': suggestion.id}) }}">{{ 'suggestion.list.action.view'|trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

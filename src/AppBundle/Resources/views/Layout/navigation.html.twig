@@ -23,11 +23,23 @@
                     <span class="nav-label">{{ 'navigation.articles.title'|trans }}</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ path('get_suggestions') }}">
+                    <i class="fa fa-file"></i>
+                    <span class="nav-label">{{ 'navigation.suggestions.title'|trans }}</span>
+                </a>
+            </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li>
                     <a href="{{ path('get_categories') }}">
                         <i class="fa fa-folder-open"></i>
                         <span class="nav-label">{{ 'navigation.articles-categories.title'|trans }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('get_suggestions_categories') }}">
+                        <i class="fa fa-folder-open"></i>
+                        <span class="nav-label">{{ 'navigation.suggestions-categories.title'|trans }}</span>
                     </a>
                 </li>
             {% endif %}

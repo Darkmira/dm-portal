@@ -30,3 +30,7 @@ fixtures:
     xwang:
         email: xwang@darkmira.com
         password: $2y$13$PUbH4NX9xVV8/8QZCb76luDp3wG0TW5rekIF53QnJxpEVa1tkwWCy # user
+    fdanguiral:
+        email: fdanguiral@darkmira.com
+        password: $2y$13$xp4C2eruYyeUJbhZ2pRzQeFMMT//0D2XLhyiIH727srapMEzgtt9i # user
+        isAdmin: 1

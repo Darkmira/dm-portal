@@ -1,0 +1,46 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'article-categories.edit.title'|trans %}
+
+{% block nav %}
+    <h2>{{ 'article-categories.edit.title'|trans }}</h2>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('home') }}">{{ 'home.title'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('get_categories') }}">{{ 'article-categories.title'|trans }}</a>
+        </li>
+        <li class="active">
+            <strong>{{ 'article-categories.edit.title'|trans }}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block action %}
+    <a href="{{ path('get_categories') }}" class="btn btn-default">{{ 'article-categories.edit.action.cancel'|trans }}</a>
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{ 'article-categories.edit.title'|trans }}</h5>
+                </div>
+                <div class="ibox-content">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="form-group">
+                        {{ form_errors(form.label) }}
+                        {{ form_widget(form.label, {'attr': {'class': 'form-control', 'placeholder': 'entity.article-category.label.placeholder'}}) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">{{ 'article-categories.edit.action.submit'|trans }}</button>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

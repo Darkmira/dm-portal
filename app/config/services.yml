@@ -5,3 +5,11 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
+
+    query_service:
+      class: AppBundle\Services\QueryService
+      arguments: ["@service_container"]
+
+    role_service:
+      class: AppBundle\Services\RoleService
+      arguments: ["@service_container"]

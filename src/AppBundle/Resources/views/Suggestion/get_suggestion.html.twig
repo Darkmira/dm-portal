@@ -1,0 +1,65 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'suggestion.number.title'|trans ~ suggestion.id%}
+
+{% block nav %}
+    <h2>{{ 'Suggestion' }}</h2>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('home') }}">{{ 'home.title'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('get_suggestions') }}">{{ 'suggestions.title'|trans }}</a>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block action %}
+    <a href="{{ path('get_suggestions') }}" class="btn btn-default">{{ 'suggestion.action.return'|trans }}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="row suggestion">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="text-center m-b-lg">
+                        <span><img class="img-circle" src="{{ gravatar(suggestion.user.email, 80) }}"
+                                   title="{{ suggestion.user.email }}" alt="{{ suggestion.user.email }}"/></span>
+                        <h1>{{ 'suggestion.number.title'|trans ~ suggestion.id }}</h1>
+                        <span class="text-muted">
+                            <i class="fa fa-clock-o"></i>
+                            {{ suggestion.insertedAt|date('d/m/Y') }}
+                        </span>
+                    </div>
+                    {{ suggestion.description|escape|markdown }}
+                    <div class="text-right">
+                        {% if suggestion.status.id == 1 %}
+                            <span class="label label-warning">{{ suggestion.status.label|trans }}</span>
+                        {% elseif suggestion.status.id == 2 %}
+                            <span class="label label-info">{{ suggestion.status.label|trans }}</span>
+                        {% else %}
+                            <span class="label label-default">{{ suggestion.status.label|trans }}</span>
+                        {% endif %}
+                        {% if (app.user.isAdmin or app.user == suggestion.user) and (suggestion.status.id == 1) %}
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('get_suggestions_mark_as',{'id':suggestion.id, 'statusId': 2}) }}">
+                                {{ 'suggestion.button.accept'|trans }}
+                            </a>
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('get_suggestions_mark_as',{'id':suggestion.id, 'statusId': 3}) }}">
+                                {{ 'suggestion.button.refuse'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if suggestion.file is not empty %}
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('get_suggestions_download',{'file':suggestion.file}) }}">
+                                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * ArticleVote
  *
  * @ORM\Table(name="article_vote")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleVoteRepository")
+ * @UniqueEntity(fields={"user", "article"})
  */
 class ArticleVote
 {
@@ -33,6 +35,7 @@ class ArticleVote
      * @var bool
      *
      * @ORM\Column(name="is_accepted", type="boolean")
+     * @Assert\NotNull()
      */
     private $isAccepted;
 
