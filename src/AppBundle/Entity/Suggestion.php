@@ -1,6 +1,8 @@
 <?php
+
 namespace AppBundle\Entity;
 
+use AppBundle\Form\Type\UserType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -82,17 +84,31 @@ class Suggestion
     private $status;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TwitterStatus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $twitterStatus;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SuggestionCategory", inversedBy="suggestions")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull()
      */
     private $category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="additional_description", type="text", nullable=true)
+     */
+    private $additionalDescription;
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -114,9 +130,9 @@ class Suggestion
     /**
      * Get description
      *
-     * @return string
+     * @return  string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -162,7 +178,7 @@ class Suggestion
      *
      * @return Suggestion
      */
-    public function setFileMimeType($mimeType): Suggestion
+    public function setFileMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
 
@@ -186,7 +202,7 @@ class Suggestion
      *
      * @return Suggestion
      */
-    public function setFileExtension($fileExtension): Suggestion
+    public function setFileExtension($fileExtension)
     {
         $this->fileExtension = $fileExtension;
 
@@ -234,9 +250,9 @@ class Suggestion
     /**
      * Get User
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
@@ -244,7 +260,7 @@ class Suggestion
     /**
      * Set status
      *
-     * @param \AppBundle\Entity\SuggestionStatus $status
+     * @param SuggestionStatus $status
      *
      * @return Suggestion
      */
@@ -258,9 +274,9 @@ class Suggestion
     /**
      * Get status
      *
-     * @return \AppBundle\Entity\SuggestionStatus
+     * @return SuggestionStatus
      */
-    public function getStatus()
+    public function getStatus(): SuggestionStatus
     {
         return $this->status;
     }
@@ -268,7 +284,7 @@ class Suggestion
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\SuggestionCategory $category
+     * @param SuggestionCategory $category
      *
      * @return Suggestion
      */
@@ -282,11 +298,58 @@ class Suggestion
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\SuggestionCategory
+     * @return SuggestionCategory|null
      */
-    public function getCategory()
+    public function getCategory(): ?SuggestionCategory
     {
         return $this->category;
     }
-}
 
+    /**
+     * Set additionalDescription
+     *
+     * @param string $additionalDescription
+     *
+     * @return Suggestion
+     */
+    public function setAdditionalDescription($additionalDescription): Suggestion
+    {
+        $this->additionalDescription = $additionalDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get additionalDescription
+     *
+     * @return string|null
+     */
+    public function getAdditionalDescription(): ?string
+    {
+        return $this->additionalDescription;
+    }
+
+    /**
+     * Set twitterStatus
+     *
+     * @param TwitterStatus $twitterStatus
+     *
+     * @return Suggestion
+     */
+    public function setTwitterStatus(TwitterStatus $twitterStatus): Suggestion
+    {
+        $this->twitterStatus = $twitterStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterStatus
+     *
+     * @return TwitterStatus
+     */
+    public function getTwitterStatus(): TwitterStatus
+    {
+        return $this->twitterStatus;
+    }
+}

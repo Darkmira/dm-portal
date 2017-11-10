@@ -2,10 +2,13 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\AppBundle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SuggestionType extends AbstractType
@@ -17,13 +20,17 @@ class SuggestionType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('file', FileType::class, array('label' => 'Fichier' , 'required' => false))
+            ->add('file', FileType::class, array(
+                'label' => 'Fichier',
+                'required' => false,
+                'data_class' => null
+            ))
             ->add('category', EntityType::class, [
                 'class' => 'AppBundle:SuggestionCategory',
                 'choice_label' => 'label',
             ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -41,6 +48,4 @@ class SuggestionType extends AbstractType
     {
         return 'appbundle_suggestion';
     }
-
-
 }

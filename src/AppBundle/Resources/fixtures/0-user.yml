@@ -34,3 +34,7 @@ fixtures:
         email: fdanguiral@darkmira.com
         password: $2y$13$xp4C2eruYyeUJbhZ2pRzQeFMMT//0D2XLhyiIH727srapMEzgtt9i # user
         isAdmin: 1
+    bnorouzali:
+        email: bnorouzali@darkmira.com
+        password: $2y$13$nCiH3sFY7VN7K9js8EikVueXeWlVmSH8qkRlEJTEubyPB5qRAzb2. # user
+        isAdmin: 1

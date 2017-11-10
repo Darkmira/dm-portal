@@ -32,6 +32,9 @@
                             {% for suggestion in suggestions %}
                                 <tr>
                                     <td class="col-xs-1">
+                                        {% if suggestion.twitterStatus.id == 2 %}
+                                            <i class="fa fa-twitter" style="color: #1da1f2"></i>
+                                        {% endif %}
                                         {% if suggestion.status.id == 1 %}
                                             <span class="label label-warning">{{ suggestion.status.label|trans }}</span>
                                         {% elseif suggestion.status.id == 2 %}
@@ -58,6 +61,14 @@
                                         <a class="btn btn-default btn-sm"
                                            href="{{ path('get_suggestion', {'id': suggestion.id}) }}">{{ 'suggestion.list.action.view'|trans }}</a>
                                     </td>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <td class="text-right col-xs-1">
+                                            <a class="btn btn-warning btn-sm"
+                                               href="{{ path('admin_suggestion_edit', {'id': suggestion.id}) }}">
+                                                <i class="fa fa-paste"></i> {{ 'suggestion.button.edit'|trans }}
+                                            </a>
+                                        </td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                             </tbody>

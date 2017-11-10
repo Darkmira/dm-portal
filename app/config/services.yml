@@ -1,15 +1,34 @@
 parameters:
 
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    AppBundle\:
+        resource: '../../src/AppBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
+
+    # controllers are imported separately to make sure they're public
+    # and have a tag that allows actions to type-hint services
+    AppBundle\Controller\:
+        resource: '../../src/AppBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
     twig.extension.text:
        class: Twig_Extensions_Extension_Text
        tags:
-           - { name: twig.extension }
+            - { name: twig.extension }
 
-    query_service:
-      class: AppBundle\Services\QueryService
+    AppBundle\Services\QueryService:
       arguments: ["@service_container"]
 
-    role_service:
-      class: AppBundle\Services\RoleService
+    AppBundle\Services\RoleService:
       arguments: ["@service_container"]
+
+    AppBundle\Services\TwitterFunctions:
+      arguments: ['%twitter_api_key%', '%twitter_api_secret%','%twitter_api_access_token%','%twitter_api_token_secret%']

@@ -1,6 +1,6 @@
 {% extends 'AppBundle::base.html.twig' %}
 
-{% block title parent() ~ ' - ' ~ 'suggestion.number.title'|trans ~ suggestion.id%}
+{% block title parent() ~ ' - ' ~ 'suggestion.number.title'|trans ~ suggestion.id %}
 
 {% block nav %}
     <h2>{{ 'Suggestion' }}</h2>
@@ -33,7 +33,27 @@
                         </span>
                     </div>
                     {{ suggestion.description|escape|markdown }}
+                    <div class="b-r-xl">
+                    </div>
+                    <div class="feed-element">
+                        <a href="#" class="pull-left">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <div class="media-body ">
+                            <strong>{{ 'suggestions.aditionaldesc.title'|trans }}</strong><br>
+                            <small class="text-muted">
+                                {% if suggestion.additionalDescription is defined and suggestion.additionalDescription is not null %}
+                                    {{ suggestion.additionalDescription }}
+                                {% elseif suggestion.additionalDescription is null %}
+                                    {{ 'suggestions.aditionaldesc.without'|trans }}
+                                {% endif %}
+                            </small>
+                        </div>
+                    </div>
                     <div class="text-right">
+                        {% if suggestion.twitterStatus.id == 2 %}
+                            <i class="fa fa-twitter" style="color: #1da1f2"></i>
+                        {% endif %}
                         {% if suggestion.status.id == 1 %}
                             <span class="label label-warning">{{ suggestion.status.label|trans }}</span>
                         {% elseif suggestion.status.id == 2 %}
@@ -41,17 +61,34 @@
                         {% else %}
                             <span class="label label-default">{{ suggestion.status.label|trans }}</span>
                         {% endif %}
-                        {% if (app.user.isAdmin or app.user == suggestion.user) and (suggestion.status.id == 1) %}
-                            <a class="btn btn-default btn-sm"
-                               href="{{ path('get_suggestions_mark_as',{'id':suggestion.id, 'statusId': 2}) }}">
-                                {{ 'suggestion.button.accept'|trans }}
-                            </a>
-                            <a class="btn btn-default btn-sm"
-                               href="{{ path('get_suggestions_mark_as',{'id':suggestion.id, 'statusId': 3}) }}">
-                                {{ 'suggestion.button.refuse'|trans }}
-                            </a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {% if (app.user.isAdmin or app.user == suggestion.user) and (suggestion.status.id == 1) %}
+                                <a class="btn btn-default btn-sm"
+                                   href="{{ path('get_suggestions_mark_as',{'id':suggestion.id, 'statusId': 2}) }}">
+                                    {{ 'suggestion.button.accept'|trans }}
+                                </a>
+                                <a class="btn btn-default btn-sm"
+                                   href="{{ path('get_suggestions_mark_as',{'id':suggestion.id, 'statusId': 3}) }}">
+                                    {{ 'suggestion.button.refuse'|trans }}
+                                </a>
+                            {% endif %}
+                            {% if suggestion.twitterStatus.id == 1 %}
+                                <a class="btn btn-default btn-sm"
+                                   href="{{ path('tweet_withMedia', {'id': suggestion.id, 'statusId': 2}) }}">
+                                    <i class="fa fa-twitter"></i>
+                                    {{ 'suggestion.button.push'|trans }}
+                                </a>
+                            {% else %}
+                                <a class="btn btn-default btn-sm" href="#" disabled="">
+                                    <i class="fa fa-twitter" style="color: #1da1f2">
+                                        {{ 'suggestion.status.pushed'|trans }}
+                                    </i>
+                                </a>
+                            {% endif %}
                         {% endif %}
+
                         {% if suggestion.file is not empty %}
+
                             <a class="btn btn-default btn-sm"
                                href="{{ path('get_suggestions_download',{'file':suggestion.file}) }}">
                                 <i class="fa fa-arrow-down" aria-hidden="true"></i>

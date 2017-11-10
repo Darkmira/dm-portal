@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\SuggestionCategory;
 use AppBundle\Form\Type\SuggestionCategoryType;
+use AppBundle\Services\RoleService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -14,6 +15,21 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SuggestionCategoryController extends Controller
 {
+
+    /**
+     * @var RoleService
+     */
+    private $roleService;
+
+    /**
+     * SuggestionCategoryController constructor.
+     * @param RoleService $roleService
+     */
+    public function __construct(RoleService $roleService)
+    {
+        $this->roleService = $roleService;
+    }
+
     /**
      * @Route("/suggestions/categories", name="get_suggestions_categories")
      * @Method({"GET"})
@@ -21,7 +37,7 @@ class SuggestionCategoryController extends Controller
      */
     public function getCategoriesAction(): Response
     {
-        $this->get('role_service')->adminOrException();
+        $this->roleService->adminOrException();
         $categories = $this->getDoctrine()->getRepository('AppBundle:SuggestionCategory')
             ->findAll();
 
@@ -38,7 +54,7 @@ class SuggestionCategoryController extends Controller
      */
     public function postCategoriesAction(Request $request): Response
     {
-        $this->get('role_service')->adminOrException();
+        $this->roleService->adminOrException();
         $category = new SuggestionCategory();
         $form = $this->createForm(SuggestionCategoryType::class, $category);
 
@@ -64,7 +80,7 @@ class SuggestionCategoryController extends Controller
      */
     public function deleteCategoryAction(int $id): Response
     {
-        $this->get('role_service')->adminOrException();
+        $this->roleService->adminOrException();
         $category = $this->getDoctrine()->getRepository('AppBundle:SuggestionCategory')
             ->find($id);
 
