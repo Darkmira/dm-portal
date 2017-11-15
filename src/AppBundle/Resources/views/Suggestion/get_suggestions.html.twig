@@ -33,7 +33,10 @@
                                 <tr>
                                     <td class="col-xs-1">
                                         {% if suggestion.twitterStatus.id == 2 %}
-                                            <i class="fa fa-twitter" style="color: #1da1f2"></i>
+                                            <i class="fa fa-twitter published-twitter"></i>
+                                        {% endif %}
+                                        {% if suggestion.facebookStatus.id == 2 %}
+                                            <i class="fa fa-facebook published-facebook" ></i>
                                         {% endif %}
                                         {% if suggestion.status.id == 1 %}
                                             <span class="label label-warning">{{ suggestion.status.label|trans }}</span>

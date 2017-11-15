@@ -67,6 +67,7 @@ suggestion.status.new: Nouveau
 suggestion.status.accepted: Accepté
 suggestion.status.refused: Refusé
 suggestion.status.pushed: poussé
+suggestion.facebook.status.login: Connexion
 suggestion-categories.list.title: Catégories
 
 suggestion-categories.list.msg.nb-suggestions: article|]1,+Inf[articles

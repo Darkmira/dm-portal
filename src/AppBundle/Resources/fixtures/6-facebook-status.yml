@@ -1,0 +1,8 @@
+model: AppBundle\Entity\FacebookStatus
+fixtures:
+    facebook_status_pending:
+        id: 1
+        status: facebook.status.pending
+    facebook_status_pushed:
+        id: 2
+        status: facebook.status.pushed

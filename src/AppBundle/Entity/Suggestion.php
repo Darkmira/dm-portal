@@ -90,6 +90,12 @@ class Suggestion
     private $twitterStatus;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FacebookStatus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $facebookStatus;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SuggestionCategory", inversedBy="suggestions")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull()
@@ -351,5 +357,29 @@ class Suggestion
     public function getTwitterStatus(): TwitterStatus
     {
         return $this->twitterStatus;
+    }
+
+    /**
+     * Set facebookStatus
+     *
+     * @param FacebookStatus $facebookStatus
+     *
+     * @return Suggestion
+     */
+    public function setFacebookStatus(FacebookStatus $facebookStatus): Suggestion
+    {
+        $this->facebookStatus = $facebookStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookStatus
+     *
+     * @return FacebookStatus
+     */
+    public function getFacebookStatus(): FacebookStatus
+    {
+        return $this->facebookStatus;
     }
 }
