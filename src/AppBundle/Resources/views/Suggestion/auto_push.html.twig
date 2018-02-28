@@ -1,0 +1,53 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'suggestions.edit.title'|trans %}
+
+{% block nav %}
+    <h2>{{ 'suggestion.social.auomations'|trans }}</h2>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('home') }}">{{ 'home.title'|trans }}</a>
+        </li>
+        <li>
+            <a href="{{ path('get_suggestions') }}">{{ 'suggestions.social.title'|trans }}</a>
+        </li>
+        <li class="active">
+            <strong>{{ 'suggestion.social.auomations'|trans }}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block action %}
+    <a href="{{ path('get_suggestions') }}" class="btn btn-default">{{ 'suggestions.add.action.cancel'|trans }}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{ 'suggestion.social.auomations'|trans }}</h5>
+                </div>
+                <div class="ibox-content">
+                    {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_errors(form.start_time) }}
+                            {{ form_widget(form.start_time) }}
+                        </div>
+                        <button type="submit"
+                                class="btn btn-primary block full-width m-b"> {{ 'suggestions.social.submit'|trans }}
+                        </button>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.autopushdatetimepicker').datetimepicker({
+                format:'YYYY-MM-DD HH:mm'
+            });
+        });
+    </script>
+{% endblock %}

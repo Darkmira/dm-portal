@@ -66,9 +66,15 @@
                                     </td>
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <td class="text-right col-xs-1">
-                                            <a class="btn btn-warning btn-sm"
+                                            <a class="btn btn-white btn-bitbucket"
                                                href="{{ path('admin_suggestion_edit', {'id': suggestion.id}) }}">
-                                                <i class="fa fa-paste"></i> {{ 'suggestion.button.edit'|trans }}
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </a>
+                                        </td>
+                                        <td class="text-right col-xs-1">
+                                            <a class="btn btn-white btn-bitbucket"
+                                               href="{{ path('admin_suggestion_autopush', {'id': suggestion.id}) }}">
+                                                <i class="fa fa-clock-o"></i>
                                             </a>
                                         </td>
                                     {% endif %}

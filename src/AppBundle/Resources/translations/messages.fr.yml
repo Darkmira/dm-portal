@@ -76,6 +76,11 @@ suggestion-categories.list.action.remove: Supprimer
 suggestion-categories.add.action.cancel: Retour
 suggestion-categories.title: Catégories
 
+suggestion.social.auomations: Ajoute la date et l'heur
+suggestions.social.title : Ajouter une automation
+suggestions.social.submit: Définis une nouvelle date
+suggestions.social.button : Automation
+
 
 # Emails
 email.new-article.title: Nouvelle demande d'article

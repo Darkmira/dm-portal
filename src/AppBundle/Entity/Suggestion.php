@@ -72,6 +72,13 @@ class Suggestion
     private $insertedAt;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_time", type="datetime", nullable=true)
+     */
+    private $startTime;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -108,6 +115,7 @@ class Suggestion
      * @ORM\Column(name="additional_description", type="text", nullable=true)
      */
     private $additionalDescription;
+
 
     /**
      * Get id
@@ -382,4 +390,29 @@ class Suggestion
     {
         return $this->facebookStatus;
     }
+
+    /**
+     * Set startTime
+     *
+     * @param \DateTime $startTime
+     *
+     * @return Suggestion
+     */
+    public function setStartTime(\DateTime $startTime): Suggestion
+    {
+        $this->startTime = $startTime;
+
+        return $this;
+    }
+
+    /**
+     * Get startTime
+     *
+     * @return \DateTime
+     */
+    public function getStartTime(): ?\DateTime
+    {
+        return $this->startTime;
+    }
+
 }

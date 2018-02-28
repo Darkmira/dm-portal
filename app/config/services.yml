@@ -31,7 +31,7 @@ services:
       arguments: ["@service_container"]
 
     AppBundle\Services\TwitterFunctions:
-      arguments: ['%twitter_api_key%', '%twitter_api_secret%','%twitter_api_access_token%','%twitter_api_token_secret%']
+      arguments: ['%twitter_api_key%', '%twitter_api_secret%','%twitter_api_access_token%','%twitter_api_token_secret%', '@doctrine.orm.entity_manager','%kernel.project_dir%/uploads/suggestion','@AppBundle\Services\QueryService']
 
     AppBundle\Services\FacebookFunctions:
       arguments: ['%facebook_api_key%','%facebook_api_secret%', '%facebook_callback%', '@router', '@session']
