@@ -1,30 +1,42 @@
-version: "3.1"
+version: "3.3"
 
 services:
-
-    web:
-        build: .
-        environment:
-            SYMFONY_ENV: dev
-        container_name: dm-portal-web
-        volumes:
-            - .:/var/www/html
 
     database:
         image: mariadb:10.3
         container_name: dm-portal-database
         environment:
             - MYSQL_ROOT_PASSWORD=dm-portal
-            - MYSQL_DATABASE=dm-portal
-            - MYSQL_USER=dm-portal
-            - MYSQL_PASSWORD=dm-portal
 
     composer:
-        restart: 'no'
         image: composer
         command: install
         volumes:
             - .:/app
+
+    doctrine:
+        build: ./docker/doctrine
+        command: sh -c "/usr/local/wait-for/wait-for database:3306 -t 30 -- sh /app/docker/doctrine/init.sh"
+        volumes:
+            - .:/app
+        depends_on:
+            - composer
+            - database
+
+    web:
+        build: ./docker/php-apache
+        environment:
+            - SYMFONY_ENV=dev
+        container_name: dm-portal-web
+        volumes:
+            - .:/var/www/html
+            - ./docker/php-apache/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+        depends_on:
+            - database
+            - composer
+            - doctrine
+        ports:
+            - 8081:80
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -32,5 +44,7 @@ services:
         ports:
             - 8080:80
         environment:
-            MYSQL_ROOT_PASSWORD: dm-portal
-            PMA_HOST: database
+            - MYSQL_ROOT_PASSWORD=dm-portal
+            - PMA_HOST=database
+        depends_on:
+            - database

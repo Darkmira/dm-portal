@@ -1,9 +1,9 @@
 parameters:
-    database_host: 127.0.0.1
+    database_host: dm-portal-database 
     database_port: ~
     database_name: dm-portal
     database_user: root
-    database_password: ~
+    database_password: dm-portal
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1
