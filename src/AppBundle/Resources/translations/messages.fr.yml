@@ -1,6 +1,8 @@
 security.signin.title: Portail Darkmira
 security.signin.action.submit: Connexion
 security.signin.button.no-account: Pas encore de compte ?
+security.signin.button.google: Se connecter avec Google
+security.signin.exception.google: Erreur lors de l'authentification
 
 security.signup.title: Inscription au Portail Darkmira
 security.signup.button.have-account: Déjà un compte ?

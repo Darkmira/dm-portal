@@ -35,3 +35,7 @@ services:
 
     AppBundle\Services\FacebookFunctions:
       arguments: ['%facebook_api_key%','%facebook_api_secret%', '%facebook_callback%', '@router', '@session']
+
+    google_authenticator:
+        class: AppBundle\Security\GoogleAuthenticator
+        autowire: true

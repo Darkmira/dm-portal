@@ -21,8 +21,13 @@ security:
             logout:
                 path: sign_out
                 target: sign_in
+            guard:
+                authenticators:
+                    - google_authenticator
 
     access_control:
+        - { path: /sign-in/google, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /sign-in-check/google, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/sign-up, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/sign-in, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/sign-in-check, roles: IS_AUTHENTICATED_ANONYMOUSLY }

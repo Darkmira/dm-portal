@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Khepin\YamlFixturesBundle\KhepinYamlFixturesBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle(),
             new AppBundle\AppBundle(),
         ];
 

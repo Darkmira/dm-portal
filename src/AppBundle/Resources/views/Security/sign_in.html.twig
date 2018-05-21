@@ -23,6 +23,9 @@
                 <button type="submit"
                         class="btn btn-primary block full-width m-b">{{ 'security.signin.action.submit'|trans }}</button>
             </form>
+            <a href="{{ path('sign_in_google') }}" class="loginBtn loginBtn--google">
+                {{ 'security.signin.button.google'|trans }}
+            </a>
             <p><a href="{{ path('sign_up') }}">{{ 'security.signin.button.no-account'|trans }}</a></p>
         </div>
     </div>

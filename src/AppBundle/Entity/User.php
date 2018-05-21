@@ -65,6 +65,12 @@ class User implements UserInterface
      */
     private $registeredAt;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="google_id", type="string", length=255, nullable=true)
+     */
+    private $googleId;
 
     /**
      * Get id
@@ -228,5 +234,17 @@ class User implements UserInterface
     public function isAdmin(): bool
     {
         return $this->isAdmin;
+    }
+
+    public function getGoogleId(): string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(string $googleId): User
+    {
+        $this->googleId = $googleId;
+
+        return $this;
     }
 }
