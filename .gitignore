@@ -15,3 +15,4 @@
 /vendor/
 /web/bundles/
 /upload/*
+/docker-compose.override.yml

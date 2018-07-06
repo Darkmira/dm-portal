@@ -11,31 +11,37 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Docker
+Docker CE
 ```
 
 ### Installing
 
 A step by step series of commands that tell you have to get a development env running
 
+*(optional)* Override default ports
 ```bash
-$ docker-compose build
+cp docker-compose.override.yml.dist docker-compose.override.yml
 ```
 
-And
-
+Builds, (re)creates and starts containers in the background
 ```bash
 $ docker-compose up -d
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests (soon)
-
+Install dependencies
 ```bash
-$ phpunit
+$ docker-compose exec web composer install --no-interaction
 ```
 
-## Deployment (soon)
+Drop, create and update your database
+```bash
+$ docker-compose exec web php bin/console doctrine:database:drop --force
+$ docker-compose exec web php bin/console doctrine:database:create
+$ docker-compose exec web php bin/console doctrine:schema:update --force
+```
 
-Additional notes about how to deploy this on a live system
+## Running the tests
+
+```bash
+$ docker-compose exec web php vendor/bin/simple-phpunit
+```

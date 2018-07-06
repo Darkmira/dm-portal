@@ -1,0 +1,16 @@
+# By default, Compose reads two files, a docker-compose.yml and an optional docker-compose.override.yml file.
+# By convention, the docker-compose.yml contains your base configuration.
+# The override file docker-compose.override.yml, as its name implies, can contain configuration overrides
+# for existing services (ports, environment, image.. or entirely new services).
+
+version: "3"
+
+services:
+
+  web:
+      ports:
+          - "80:80"
+
+  phpmyadmin:
+      ports:
+          - "8080:80"

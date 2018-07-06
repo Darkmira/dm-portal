@@ -5,10 +5,12 @@ language: php
 services:
   - docker
 
-env:
-  - SYMFONY_ENV=dev
-
-script: php bin/console about
+before_install:
+    - docker-compose up -d
+    - docker-compose exec web composer install --no-interaction
+    - docker-compose exec web php bin/console doctrine:database:drop --if-exists --force
+    - docker-compose exec web php bin/console doctrine:database:create
+    - docker-compose exec web php bin/console doctrine:schema:update --force
 
 script:
-  - docker-compose build
+    - docker-compose exec web php vendor/bin/simple-phpunit

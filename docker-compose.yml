@@ -1,50 +1,38 @@
-version: "3.3"
+version: "3"
 
 services:
+
+    web:
+        image: webdevops/php-nginx-dev:7.1
+        container_name: dm-portal-web
+        volumes:
+            - ./:/app
+        working_dir: /app
+        depends_on:
+            - database
+        environment:
+            WEB_DOCUMENT_ROOT: /app/web
+            WEB_DOCUMENT_INDEX: app_dev.php
+            PHP_DATE_TIMEZONE: "UTC"
+            PHP_DISPLAY_ERRORS: 1
+            SYMFONY_ENV: dev
+        ports:
+            - 8081:80
 
     database:
         image: mariadb:10.3
         container_name: dm-portal-database
         environment:
-            - MYSQL_ROOT_PASSWORD=dm-portal
-
-    composer:
-        image: composer
-        command: install
-        volumes:
-            - .:/app
-
-    doctrine:
-        build: ./docker/doctrine
-        command: sh -c "/usr/local/wait-for/wait-for database:3306 -t 30 -- sh /app/docker/doctrine/init.sh"
-        volumes:
-            - .:/app
-        depends_on:
-            - composer
-            - database
-
-    web:
-        build: ./docker/php-apache
-        environment:
-            - SYMFONY_ENV=dev
-        container_name: dm-portal-web
-        volumes:
-            - .:/var/www/html
-            - ./docker/php-apache/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
-        depends_on:
-            - database
-            - composer
-            - doctrine
-        ports:
-            - 8081:80
+            MYSQL_ROOT_PASSWORD: dm-portal
+            MYSQL_DATABASE: mydatabase
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: dm-portal-phpmyadmin
+        depends_on:
+            - database
         ports:
             - 8080:80
         environment:
-            - MYSQL_ROOT_PASSWORD=dm-portal
-            - PMA_HOST=database
-        depends_on:
-            - database
+            MYSQL_ROOT_PASSWORD: dm-portal
+            PMA_HOST: database
