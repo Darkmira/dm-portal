@@ -40,6 +40,10 @@ $ docker-compose exec web php bin/console doctrine:database:drop --force
 $ docker-compose exec web php bin/console doctrine:database:create
 $ docker-compose exec web php bin/console doctrine:schema:update --force
 ```
+## Loading data fixtures
+```bash
+docker-compose exec web php bin/console khepin:yamlfixtures:load
+```
 
 ## Running the tests
 
