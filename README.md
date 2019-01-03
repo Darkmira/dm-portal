@@ -1,5 +1,6 @@
 # DM Portal
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/522be124011a4104ad5ecd8af6c7c50c)](https://app.codacy.com/app/Darkmira/dm-portal?utm_source=github.com&utm_medium=referral&utm_content=Darkmira/dm-portal&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/Darkmira/dm-portal.svg?branch=develop)](https://travis-ci.org/Darkmira/dm-portal)
 
 ## Getting Started
